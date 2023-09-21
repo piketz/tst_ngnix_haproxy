@@ -1,0 +1,10 @@
+---
+  - name: Reload service firewalld
+    systemd:
+     name: firewalld
+     state: reloaded
+    
+  - name: Reload service Nginx
+    systemd:
+     name: nginx
+     state: reloaded   

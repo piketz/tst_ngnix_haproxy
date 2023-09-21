@@ -1,0 +1,7 @@
+--- 
+ - name: Install HA proxy
+   hosts: loadbalancers
+   become: yes
+   
+   roles:
+    - { role: keepalived_install, when: ansible_system == 'Linux' }

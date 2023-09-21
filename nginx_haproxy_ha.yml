@@ -1,0 +1,21 @@
+--- 
+ - name: Install Nginx Server
+   hosts: webservers
+   become: yes
+   
+   roles:
+    - { role: nginx_install, when: ansible_system == 'Linux' }
+
+ - name: Install HA proxy
+   hosts: loadbalancers
+   become: yes
+   
+   roles:
+    - { role: haproxy_install, when: ansible_system == 'Linux' }
+
+ - name: Install HA proxy
+   hosts: loadbalancers
+   become: yes
+   
+   roles:
+    - { role: keepalived_install, when: ansible_system == 'Linux' }

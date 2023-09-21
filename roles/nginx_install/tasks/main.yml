@@ -1,0 +1,17 @@
+---
+ - name: Install config epel-release
+   yum: name=epel-release state=latest
+      
+ - name: Install Nginx
+   yum: name=nginx state=latest
+      
+ - name: Generate index.html
+   template: src=index.j2 dest=/usr/share/nginx/html/index.html mode=0555
+   notify: Reload service Nginx
+      
+ - name: Start Nginx
+   systemd: name=nginx state=started enabled=yes
+    
+ - name: Config NAT
+   firewalld: service=http permanent=yes state=enabled
+   notify: Reload service firewalld

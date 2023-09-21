@@ -1,0 +1,7 @@
+---
+ - name: Install Keepalived
+   yum: name=keepalived state=latest
+
+ - name: Generate config file Keepalived
+   template: src=keepalived.conf.j2 dest=/etc/keepalived/keepalived.conf
+   notify: Reload service Keepalived

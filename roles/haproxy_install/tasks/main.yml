@@ -1,0 +1,10 @@
+---
+  - name: Install HA proxy
+    yum: name=haproxy state=latest
+      
+  - name: Generate config haproxy file
+    template: src=haproxy.j2 dest=/etc/haproxy/haproxy.cfg mode=0555
+    notify: Reload service HA proxy
+
+  - name: Start HA proxy
+    systemd: name=haproxy state=started enabled=yes
